@@ -72,16 +72,6 @@ struct checksum_envelope {
 namespace detail {
 
 template<typename T>
-concept has_compat_attribute = requires(T t) {
-    t.redpanda_serde_compat_version;
-};
-
-template<typename T>
-concept has_version_attribute = requires(T t) {
-    t.redpanda_serde_version;
-};
-
-template<typename T>
 concept compat_version_has_serde_version_type = requires(T t) {
     requires std::same_as<
       std::decay_t<decltype(t.redpanda_serde_compat_version)>,
@@ -104,16 +94,12 @@ concept has_checksum_attribute = requires(T t) {
 
 template<typename T>
 concept is_envelope =
-  detail::has_compat_attribute<T>
-  && detail::has_version_attribute<T>
-  && detail::compat_version_has_serde_version_type<T>
+  detail::compat_version_has_serde_version_type<T>
   && detail::version_has_serde_version_type<T>;
 
 template<typename T>
 concept is_checksum_envelope =
-  detail::has_compat_attribute<T>
-  && detail::has_version_attribute<T>
-  && detail::compat_version_has_serde_version_type<T>
+  detail::compat_version_has_serde_version_type<T>
   && detail::version_has_serde_version_type<T>
   && detail::has_checksum_attribute<T>;
 // clang-format on
