@@ -50,7 +50,7 @@ public:
         error_map_t errors;
 
         for (auto const& [name, property] : _properties) {
-            if (property->is_required() == required::no) {
+            if (property->is_required() == required_t::no) {
                 continue;
             }
             ss::sstring name_str(name.data());
@@ -121,7 +121,7 @@ public:
         w.StartObject();
 
         for (const auto& [name, property] : _properties) {
-            if (property->get_visibility() == visibility::deprecated) {
+            if (property->get_visibility() == visibility_t::deprecated) {
                 continue;
             }
 

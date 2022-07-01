@@ -48,7 +48,6 @@ fedora_deps=(
   curl
   git
   libzstd-devel
-  libzstd-static
   llvm
   lld
   pkg-config
@@ -87,7 +86,7 @@ case "$ID" in
     apt-get update
     DEBIAN_FRONTEND=noninteractive apt-get install -y "${deb_deps[@]}"
     ;;
-  fedora)
+  fedora | rocky)
     dnf install -y "${fedora_deps[@]}"
     ;;
   arch | manjaro)
@@ -100,7 +99,7 @@ case "$ID" in
 esac
 # needed for unit tests
 sysctl -w fs.aio-max-nr=10485760 || true
-curl -1sLf "https://raw.githubusercontent.com/redpanda-data/seastar/master/install-dependencies.sh" | bash
+#curl -1sLf "https://raw.githubusercontent.com/redpanda-data/seastar/master/install-dependencies.sh" | bash
 
 set -e
 
@@ -108,10 +107,10 @@ if [[ -z ${DEPOT_TOOLS_DIR} ]]; then
   DEPOT_TOOLS_DIR=/opt/depot_tools
 fi
 
-rm -rf $DEPOT_TOOLS_DIR
-mkdir -p $DEPOT_TOOLS_DIR
-cd $(dirname $DEPOT_TOOLS_DIR)
-git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+# rm -rf $DEPOT_TOOLS_DIR
+# mkdir -p $DEPOT_TOOLS_DIR
+# cd $(dirname $DEPOT_TOOLS_DIR)
+# git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 cd $DEPOT_TOOLS_DIR
 git checkout ecdc362593cfee1ade115ead7be6c3e96b2e7384
 mkdir $DEPOT_TOOLS_DIR/installed-gn

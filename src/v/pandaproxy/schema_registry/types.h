@@ -81,8 +81,9 @@ public:
       const typed_schema_definition& lhs, const typed_schema_definition& rhs)
       = default;
 
+    template<typename T>
     friend std::ostream&
-    operator<<(std::ostream& os, const typed_schema_definition&);
+    operator<<(std::ostream& os, const typed_schema_definition<T>&);
 
     schema_type type() const { return _type; }
 
@@ -310,7 +311,8 @@ public:
     friend bool operator==(const typed_schema& lhs, const typed_schema& rhs)
       = default;
 
-    friend std::ostream& operator<<(std::ostream& os, const typed_schema& ref);
+    template<typename T>
+    friend std::ostream& operator<<(std::ostream& os, const typed_schema<T>& ref);
 
     const subject& sub() const& { return _sub; }
     subject sub() && { return std::move(_sub); }

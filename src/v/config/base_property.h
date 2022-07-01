@@ -29,15 +29,15 @@ namespace config {
 static constexpr std::string_view secret_placeholder = "[secret]";
 
 class config_store;
-using required = ss::bool_class<struct required_tag>;
-using needs_restart = ss::bool_class<struct needs_restart_tag>;
+using required_t = ss::bool_class<struct required_tag>;
+using needs_restart_t = ss::bool_class<struct needs_restart_tag>;
 using is_secret = ss::bool_class<struct is_secret_tag>;
 
 // Whether to redact secrets. If true, `secret_placeholder` should be used
 // instead of the config value.
 using redact_secrets = ss::bool_class<struct redact_secrets_tag>;
 
-enum class visibility {
+enum class visibility_t {
     // Tunables can be set by the user, but they control implementation
     // details like (e.g. buffer sizes, queue lengths)
     tunable,
@@ -50,15 +50,15 @@ enum class visibility {
     deprecated,
 };
 
-std::string_view to_string_view(visibility v);
+std::string_view to_string_view(visibility_t v);
 
 class base_property {
 public:
     struct metadata {
-        required required{required::no};
-        needs_restart needs_restart{needs_restart::yes};
+        required_t required{required_t::no};
+        needs_restart_t needs_restart{needs_restart_t::yes};
         std::optional<ss::sstring> example{std::nullopt};
-        visibility visibility{visibility::user};
+        visibility_t visibility{visibility_t::user};
         is_secret secret{is_secret::no};
     };
 
@@ -71,9 +71,9 @@ public:
     const std::string_view& name() const { return _name; }
     const std::string_view& desc() const { return _desc; }
 
-    const required is_required() const { return _meta.required; }
+    const required_t is_required() const { return _meta.required; }
     bool needs_restart() const { return bool(_meta.needs_restart); }
-    visibility get_visibility() const { return _meta.visibility; }
+    visibility_t get_visibility() const { return _meta.visibility; }
     bool is_secret() const { return bool(_meta.secret); }
 
     // this serializes the property value. a full configuration serialization is

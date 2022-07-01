@@ -215,7 +215,7 @@ partition_downloader::build_offset_map(const recovery_material& mat) {
     // may overlap so we need to deduplicate. Also, to take retention into
     // account.
     offset_map_t offset_map;
-    const auto& manifest = mat.partition_manifest;
+    const auto& manifest = mat._partition_manifest;
     for (const auto& segm : manifest) {
         if (offset_map.contains(segm.second.base_offset)) {
             auto committed
@@ -309,7 +309,7 @@ partition_downloader::download_log(const remote_manifest_path& manifest_key) {
     // Upload topic manifest for re-created topic (here we don't prevent
     // other partitions of the same topic to read old topic manifest if the
     // revision is different).
-    if (mat.topic_manifest.get_revision() != _ntpc.get_initial_revision()) {
+    if (mat._topic_manifest.get_revision() != _ntpc.get_initial_revision()) {
         mat.topic_manifest.set_revision(_ntpc.get_initial_revision());
         upl_result = co_await _remote->upload_manifest(
           _bucket, mat.topic_manifest, _rtcnode);

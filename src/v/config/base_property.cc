@@ -31,13 +31,13 @@ std::ostream& operator<<(std::ostream& o, const base_property& p) {
     return o;
 }
 
-std::string_view to_string_view(visibility v) {
+std::string_view to_string_view(visibility_t v) {
     switch (v) {
-    case config::visibility::tunable:
+    case config::visibility_t::tunable:
         return "tunable";
-    case config::visibility::user:
+    case config::visibility_t::user:
         return "user";
-    case config::visibility::deprecated:
+    case config::visibility_t::deprecated:
         return "deprecated";
     }
 
@@ -50,9 +50,9 @@ std::string_view to_string_view(visibility v) {
  */
 void base_property::assert_live_settable() const {
     vassert(
-      _meta.needs_restart == needs_restart::no,
+      _meta.needs_restart == needs_restart_t::no,
       "Property must be be marked as "
-      "needs_restart::no");
+      "needs_restart_t::no");
 }
 
 }; // namespace config

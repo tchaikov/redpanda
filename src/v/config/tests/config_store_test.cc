@@ -45,14 +45,14 @@ struct test_config : public config::config_store {
         *this,
         "optional_int",
         "An optional int value",
-        {.visibility = config::visibility::tunable},
+        {.visibility = config::visibility_t::tunable},
         100)
       , required_string(
           *this,
           "required_string",
           "Required string value",
-          {.needs_restart = config::needs_restart::no,
-           .visibility = config::visibility::user})
+          {.needs_restart = config::needs_restart_t::no,
+           .visibility = config::visibility_t::user})
       , an_int64_t(*this, "an_int64_t", "Some other int type", {}, 200)
       , an_aggregate(
           *this,
@@ -82,7 +82,7 @@ struct test_config : public config::config_store {
           "boolean",
           "Plain boolean property",
           config::base_property::metadata{
-            .needs_restart = config::needs_restart::no},
+            .needs_restart = config::needs_restart_t::no},
           false)
       , seconds(*this, "seconds", "Plain seconds")
       , optional_seconds(*this, "optional_seconds", "Optional seconds")

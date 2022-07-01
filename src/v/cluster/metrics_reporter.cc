@@ -173,7 +173,7 @@ metrics_reporter::build_metrics_snapshot() {
 
     auto report = co_await _health_monitor.local().get_cluster_health(
       cluster_report_filter{
-        .node_report_filter
+        ._node_report_filter
         = node_report_filter{.include_partitions = include_partitions_info::no}},
       force_refresh::no,
       config::shard_local_cfg().metrics_reporter_report_interval()

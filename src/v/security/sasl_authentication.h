@@ -87,6 +87,8 @@ inline std::string_view sasl_state_to_str(sasl_server::sasl_state state) {
         return "complete";
     case sasl_server::sasl_state::failed:
         return "failed";
+    default:
+        std::abort();
     }
 }
 

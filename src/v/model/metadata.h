@@ -380,6 +380,8 @@ operator<<(std::ostream& o, const model::violation_recovery_policy& x) {
         return o << "best_effort";
     case model::violation_recovery_policy::crash:
         return o << "crash";
+    default:
+        std::abort();
     }
 }
 

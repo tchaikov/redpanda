@@ -215,7 +215,7 @@ FIXTURE_TEST(test_ntp_filter, cluster_test_fixture) {
 
     static auto filter_template = [] {
         return cluster::cluster_report_filter{
-          .node_report_filter = cluster::node_report_filter{
+          ._node_report_filter = cluster::node_report_filter{
             .include_partitions = cluster::include_partitions_info::yes,
           }};
     };
@@ -245,11 +245,11 @@ FIXTURE_TEST(test_ntp_filter, cluster_test_fixture) {
       model::topic("tp-2"),
       cluster::partitions_filter::partitions_set_t{model::partition_id(0)});
 
-    f_1.node_report_filter.ntp_filters.namespaces.emplace(
+    f_1._node_report_filter.ntp_filters.namespaces.emplace(
       model::kafka_namespace, std::move(kafka_topics_map));
 
     // filter by namespace
-    f_1.node_report_filter.ntp_filters.namespaces.emplace(
+    f_1._node_report_filter.ntp_filters.namespaces.emplace(
       model::redpanda_ns, cluster::partitions_filter::topic_map_t{});
 
     // filter by topic
@@ -258,7 +258,7 @@ FIXTURE_TEST(test_ntp_filter, cluster_test_fixture) {
       model::topic("internal-1"),
       cluster::partitions_filter::partitions_set_t{});
 
-    f_1.node_report_filter.ntp_filters.namespaces.emplace(
+    f_1._node_report_filter.ntp_filters.namespaces.emplace(
       model::kafka_internal_namespace, std::move(internal_topic_map));
     /**
      * Requested kafka/tp-1/0, kafka/tp-1/2, kafka/tp-2/0,
@@ -286,7 +286,7 @@ FIXTURE_TEST(test_ntp_filter, cluster_test_fixture) {
     // check filtering in node report
     auto node_report = n1->controller->get_health_monitor()
                          .local()
-                         .collect_node_health(f_1.node_report_filter)
+                         .collect_node_health(f_1._node_report_filter)
                          .get();
 
     BOOST_TEST_REQUIRE(node_report.has_value());

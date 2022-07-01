@@ -46,7 +46,7 @@ ss::future<errc> read_replica_manager::set_remote_properties_in_config(
           key);
         co_return errc::topic_operation_error;
     } else {
-        cfg.cfg.properties.remote_topic_properties = remote_topic_properties(
+        cfg.cfg.properties._remote_topic_properties = remote_topic_properties(
           manifest.get_revision(),
           manifest.get_topic_config()->partition_count);
     }

@@ -22,7 +22,7 @@ util::generate_json_schema(const config::configuration& conf) {
     property_map properties;
 
     conf.for_each([&properties](const config::base_property& p) {
-        if (p.get_visibility() == config::visibility::deprecated) {
+        if (p.get_visibility() == config::visibility_t::deprecated) {
             // Do not mention deprecated settings in schema: they
             // only exist internally to avoid making existing stored
             // configs invalid.

@@ -600,7 +600,7 @@ cluster::topic_properties random_topic_properties() {
         return random_generators::gen_alphanum_string(
           random_generators::get_int(1, 64));
     });
-    properties.remote_topic_properties = tests::random_optional(
+    properties._remote_topic_properties = tests::random_optional(
       [] { return random_remote_topic_properties(); });
 
     return properties;

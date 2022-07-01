@@ -65,7 +65,7 @@ public:
         return _name != kafka::no_member ? _name : _member_id;
     }
     const std::vector<model::topic>& topics() const { return _topics; }
-    const assignment_t& assignment() const { return _assignment; }
+    const assignment_t& assignment_() const { return _assignment; }
 
     ss::future<> initialize();
     ss::future<leave_group_response> leave();

@@ -72,6 +72,8 @@ std::ostream& operator<<(std::ostream& o, transport_version v) {
         return o << "rpc::transport_version::v0";
     case transport_version::unsupported:
         return o << "rpc::transport_version::unsupported";
+    default:
+        std::abort();
     }
 }
 

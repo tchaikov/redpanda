@@ -28,22 +28,22 @@ struct test_config : public config::config_store {
         *this,
         "valid_retention",
         "A positive value",
-        {.needs_restart = config::needs_restart::no,
-         .visibility = config::visibility::user},
+        {.needs_restart = config::needs_restart_t::no,
+         .visibility = config::visibility_t::user},
         10080min)
       , inf_retention(
           *this,
           "inf_retention",
           "-1 should be interpreted as infinity",
-          {.needs_restart = config::needs_restart::no,
-           .visibility = config::visibility::user},
+          {.needs_restart = config::needs_restart_t::no,
+           .visibility = config::visibility_t::user},
           10080min)
       , default_retention(
           *this,
           "default_retention",
           "not set retention config should return default value",
-          {.needs_restart = config::needs_restart::no,
-           .visibility = config::visibility::user},
+          {.needs_restart = config::needs_restart_t::no,
+           .visibility = config::visibility_t::user},
           10080min) {}
 };
 

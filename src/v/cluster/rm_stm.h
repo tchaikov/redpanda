@@ -217,6 +217,8 @@ public:
                 return "preparing";
             case status_t::initiating:
                 return "initiating";
+            default:
+                std::abort();
             }
         }
 

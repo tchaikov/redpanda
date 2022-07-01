@@ -58,6 +58,45 @@ std::string_view to_string_view(feature_state::state s) {
 // on protocol changes to raft0 structures, like adding new services.
 static constexpr cluster_version latest_version = cluster_version{4};
 
+constexpr static std::array feature_schema{
+  feature_spec{
+    cluster_version{1},
+    "central_config",
+    feature::central_config,
+    feature_spec::available_policy::always,
+    feature_spec::prepare_policy::always},
+  feature_spec{
+    cluster_version{2},
+    "consumer_offsets",
+    feature::consumer_offsets,
+    feature_spec::available_policy::always,
+    feature_spec::prepare_policy::requires_migration},
+  feature_spec{
+    cluster_version{3},
+    "maintenance_mode",
+    feature::maintenance_mode,
+    feature_spec::available_policy::always,
+    feature_spec::prepare_policy::always},
+  feature_spec{
+    cluster_version{3},
+    "mtls_authentication",
+    feature::mtls_authentication,
+    feature_spec::available_policy::explicit_only,
+    feature_spec::prepare_policy::always},
+  feature_spec{
+    cluster_version{4},
+    "serde_raft_0",
+    feature::serde_raft_0,
+    feature_spec::available_policy::always,
+    feature_spec::prepare_policy::always},
+  feature_spec{
+    cluster_version{2001},
+    "__test_alpha",
+    feature::test_alpha,
+    feature_spec::available_policy::explicit_only,
+    feature_spec::prepare_policy::always}};
+
+
 feature_table::feature_table() {
     // Intentionally undocumented environment variable, only for use
     // in integration tests.

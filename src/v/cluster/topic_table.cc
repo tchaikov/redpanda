@@ -54,8 +54,8 @@ topic_table::apply(create_topic_cmd cmd, model::offset offset) {
     }
 
     std::optional<model::initial_revision_id> remote_revision
-      = cmd.value.cfg.properties.remote_topic_properties ? std::make_optional(
-          cmd.value.cfg.properties.remote_topic_properties->remote_revision)
+      = cmd.value.cfg.properties._remote_topic_properties ? std::make_optional(
+          cmd.value.cfg.properties._remote_topic_properties->remote_revision)
                                                          : std::nullopt;
 
     _topics.insert(

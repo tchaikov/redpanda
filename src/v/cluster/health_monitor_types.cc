@@ -111,7 +111,7 @@ std::ostream& operator<<(std::ostream& o, const node_report_filter& s) {
 
 std::ostream& operator<<(std::ostream& o, const cluster_report_filter& s) {
     fmt::print(
-      o, "{{per_node_filter: {}, nodes: {}}}", s.node_report_filter, s.nodes);
+      o, "{{per_node_filter: {}, nodes: {}}}", s._node_report_filter, s.nodes);
     return o;
 }
 
@@ -402,7 +402,7 @@ void adl<cluster::cluster_report_filter>::to(
     reflection::serialize(
       out,
       f.current_version,
-      std::move(f.node_report_filter),
+      std::move(f._node_report_filter),
       std::move(f.nodes));
 }
 
@@ -415,7 +415,7 @@ adl<cluster::cluster_report_filter>::from(iobuf_parser& p) {
     auto nodes = adl<std::vector<model::node_id>>{}.from(p);
 
     return cluster::cluster_report_filter{
-      .node_report_filter = std::move(node_filter),
+      ._node_report_filter = std::move(node_filter),
       .nodes = std::move(nodes),
     };
 }

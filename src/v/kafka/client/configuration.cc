@@ -25,7 +25,7 @@ configuration::configuration()
     *this,
     "brokers",
     "List of address and port of the brokers",
-    {.required = config::required::yes},
+    {.required = config::required_t::yes},
     std::vector<net::unresolved_address>({{"127.0.0.1", 9092}}))
   , broker_tls(
       *this,

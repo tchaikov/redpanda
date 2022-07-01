@@ -142,7 +142,7 @@ cluster_health_report health_monitor_backend::build_cluster_report(
     reports.reserve(nodes.size());
     statuses.reserve(nodes.size());
     for (const auto& node_id : nodes) {
-        auto r = build_node_report(node_id, filter.node_report_filter);
+        auto r = build_node_report(node_id, filter._node_report_filter);
         if (r) {
             reports.push_back(std::move(r.value()));
         }

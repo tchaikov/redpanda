@@ -308,7 +308,7 @@ ExternalProject_Add(kafka-codegen-pex
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND
-  COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> python3 -m venv env
+  COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> python3.9 -m venv env
   COMMAND <SOURCE_DIR>/env/bin/pip install pex
   COMMAND <SOURCE_DIR>/env/bin/pex jsonschema jinja2 -o <INSTALL_DIR>/bin/kafka-codegen-venv)
 

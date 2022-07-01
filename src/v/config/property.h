@@ -531,7 +531,7 @@ private:
 class deprecated_property : public property<ss::sstring> {
 public:
     deprecated_property(config_store& conf, std::string_view name)
-      : property(conf, name, "", {.visibility = visibility::deprecated}) {}
+      : property(conf, name, "", {.visibility = visibility_t::deprecated}) {}
 
     void set_value(std::any) override { return; }
 };

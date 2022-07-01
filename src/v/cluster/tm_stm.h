@@ -99,6 +99,8 @@ struct tm_transaction {
             return "ready";
         case tx_status::tombstone:
             return "tombstone";
+        default:
+            std::abort();
         }
     }
 

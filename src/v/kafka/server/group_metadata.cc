@@ -327,6 +327,8 @@ group_metadata_serializer make_backward_compatible_serializer() {
                 return group_metadata_type::group_metadata;
             case old::group_log_record_key::type::noop:
                 return group_metadata_type::noop;
+            default:
+                std::abort();
             }
         };
 

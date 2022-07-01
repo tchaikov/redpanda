@@ -436,7 +436,7 @@ client::consumer_topics(const group_id& g_id, const member_id& name) {
 ss::future<assignment>
 client::consumer_assignment(const group_id& g_id, const member_id& name) {
     return get_consumer(g_id, name).then([](shared_consumer_t c) {
-        return ss::make_ready_future<assignment>(c->assignment());
+        return ss::make_ready_future<assignment>(c->assignment_());
     });
 }
 

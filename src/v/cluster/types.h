@@ -955,7 +955,7 @@ struct topic_properties
       std::optional<model::shadow_indexing_mode> shadow_indexing,
       std::optional<bool> read_replica,
       std::optional<ss::sstring> read_replica_bucket,
-      std::optional<remote_topic_properties> remote_topic_properties)
+      std::optional<remote_topic_properties> _remote_topic_properties)
       : compression(compression)
       , cleanup_policy_bitflags(cleanup_policy_bitflags)
       , compaction_strategy(compaction_strategy)
@@ -967,7 +967,7 @@ struct topic_properties
       , shadow_indexing(shadow_indexing)
       , read_replica(read_replica)
       , read_replica_bucket(read_replica_bucket)
-      , remote_topic_properties(remote_topic_properties) {}
+      , _remote_topic_properties(_remote_topic_properties) {}
 
     std::optional<model::compression> compression;
     std::optional<model::cleanup_policy_bitflags> cleanup_policy_bitflags;
@@ -980,7 +980,7 @@ struct topic_properties
     std::optional<model::shadow_indexing_mode> shadow_indexing;
     std::optional<bool> read_replica;
     std::optional<ss::sstring> read_replica_bucket;
-    std::optional<remote_topic_properties> remote_topic_properties;
+    std::optional<remote_topic_properties> _remote_topic_properties;
 
     bool is_compacted() const;
     bool has_overrides() const;
@@ -1001,7 +1001,7 @@ struct topic_properties
           shadow_indexing,
           read_replica,
           read_replica_bucket,
-          remote_topic_properties);
+          _remote_topic_properties);
     }
 
     friend bool operator==(const topic_properties&, const topic_properties&)

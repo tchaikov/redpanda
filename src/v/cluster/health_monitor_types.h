@@ -190,7 +190,7 @@ struct node_report_filter {
 struct cluster_report_filter {
     static constexpr int8_t current_version = 0;
     // filtering that will be applied to node reports
-    node_report_filter node_report_filter;
+    node_report_filter _node_report_filter;
     // list of requested nodes, if empty report will contain all nodes
     std::vector<model::node_id> nodes;
 

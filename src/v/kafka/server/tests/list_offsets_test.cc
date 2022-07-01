@@ -212,7 +212,7 @@ FIXTURE_TEST(list_offsets_by_time, redpanda_thread_fixture) {
     batches.reserve(batch_count);
     for (long i = 0; i < batch_count; ++i) {
         batches.push_back(make_random_batch(model::test::record_batch_spec{
-          .count = record_count, .timestamp{i}}));
+          .count = record_count, .timestamp = model::timestamp(i)}));
         auto req = make_produce_request(ntp.tp, batches.back().share());
         auto res = client.dispatch(std::move(req), kafka::api_version(7)).get();
         const auto& topics = res.data.responses;

@@ -29,7 +29,7 @@ public:
           _mock_store,
           "anonymous",
           "",
-          base_property::metadata{.needs_restart = needs_restart::no}) {
+          base_property::metadata{.needs_restart = needs_restart_t::no}) {
         _property.set_value(value);
     }
 

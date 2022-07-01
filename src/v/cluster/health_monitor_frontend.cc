@@ -78,7 +78,7 @@ health_monitor_frontend::get_nodes_status(
     return dispatch_to_backend([deadline](health_monitor_backend& be) {
         // build filter
         cluster_report_filter filter{
-          .node_report_filter = node_report_filter{
+          ._node_report_filter = node_report_filter{
             .include_partitions = include_partitions_info::no,
           }};
         return be.get_cluster_health(filter, force_refresh::no, deadline)

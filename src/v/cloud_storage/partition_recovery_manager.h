@@ -121,8 +121,8 @@ private:
     download_manifest(const remote_manifest_path& path);
 
     struct recovery_material {
-        topic_manifest topic_manifest;
-        partition_manifest partition_manifest;
+        topic_manifest _topic_manifest;
+        partition_manifest _partition_manifest;
     };
 
     /// Locate all data needed to recover single partition

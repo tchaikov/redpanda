@@ -33,8 +33,8 @@ SEASTAR_THREAD_TEST_CASE(test_post_subject_versions_version_response) {
         {{{"com.acme.Referenced"},
           pps::subject{"childSubject"},
           pps::schema_version{1}}}},
-      .id{12},
-      .version{2}};
+      .id = pps::schema_id{12},
+      .version = pps::schema_version{2}};
 
     const ss::sstring expected{
       R"(

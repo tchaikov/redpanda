@@ -1446,7 +1446,7 @@ void adl<cluster::topic_properties>::to(
       p.shadow_indexing,
       p.read_replica,
       p.read_replica_bucket,
-      p.remote_topic_properties);
+      p._remote_topic_properties);
 }
 
 cluster::topic_properties

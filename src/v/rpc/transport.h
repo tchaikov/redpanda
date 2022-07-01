@@ -119,6 +119,8 @@ inline errc map_server_error(status status) {
         return errc::method_not_found;
     case status::version_not_supported:
         return errc::version_not_supported;
+    default:
+        std::abort();
     };
 };
 
